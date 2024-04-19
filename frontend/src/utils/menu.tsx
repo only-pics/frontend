@@ -1,3 +1,4 @@
 export const menuOptions = [
-    { name: 'Test', to: '/test' },
+    { name: 'Feed', to: '/feed' },
+    { name: 'Profile', to: '/profile' },
 ];
