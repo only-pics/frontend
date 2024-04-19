@@ -13,7 +13,7 @@ export function Header() {
     const navigator = useNavigate();
 
     return (
-        <div className={` duration-600 sticky w-full top-0 z-20 shadow-2xl backdrop-blur-md bg-background/15`}>
+        <div className="duration-600 sticky w-full bg-red-600 top-0 z-20">
             <div className="w-full bg-transparent flex flex-row justify-center items-center px-12 h-14">
                 {/* <img className="cursor-pointer h-[100%] py-2" src={LogoApp} alt="Whale Finance" onClick={() => navigator('/')}/> */}
                 <p className="cursor-pointer text-primary mx-2" onClick={() => navigator('/')}>Whale LABS</p>

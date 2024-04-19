@@ -2,6 +2,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from "./pages/Layout"
 import Home from "./pages/Home"
+import Profile from "./pages/Profile"
+import Feed from "./pages/Feed"
 
 function App() {
 
@@ -14,6 +16,8 @@ function App() {
             />
           }>
             <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/feed" element={<Feed />} />
           </Route>
         </Routes>
       </BrowserRouter>
