@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -17,6 +17,12 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: (theme) => ({
+        gradient1:
+          "linear-gradient(to right, rgba(248, 193, 247, 1) 0%, rgba(255, 0, 255, 1) 100%)",
+        gradient2:
+          "radial-gradient(circle at 50% 50%, rgba(255, 223, 253, 1) 55%, rgba(255, 133, 255, 1) 100%)",
+      }),
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -73,5 +79,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-}
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar")],
+};
