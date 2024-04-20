@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import Profile from "./pages/Profile"
 import Feed from "./pages/Feed"
 import { connectMetamask } from "./utils/connectMetamask"
+import New from "./pages/New"
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/feed" element={<Feed />} />
+            <Route path="/new" element={<New />} />
           </Route>
         </Routes>
       </BrowserRouter>
