@@ -28,7 +28,107 @@ export const users = [
         banner,
         description: "I'm a GOD at ITA",
         funded: 1000
-    }
+    },
+    {
+        id: 4,
+        name: "Doe",
+        username: 'random',
+        followers: 1000,
+        following: 100,
+        avatar: img1,
+        banner,
+        funded: 10,
+        description: 'OPE',
+        post: [
+          {
+            photo: img1,
+            likes: 100,
+            comments: 100,
+            hot: 100,
+            text: "senhor deus seno senhor",
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: "John",
+        username: 'random',
+        followers: 1000,
+        following: 100,
+        avatar: img2,
+        banner,
+        funded: 10,
+        description: 'OPE',
+        post: [
+          {
+            photo: img2,
+            likes: 100,
+            comments: 100,
+            hot: 100,
+            text: "senhor deus seno senhor",
+          },
+        ],
+      },
+      {
+        id: 6,
+        name: "Jane Doe",
+        username: 'random',
+        followers: 1000,
+        following: 100,
+        avatar: img3,
+        banner,
+        funded: 10,
+        description: 'OPE',
+        post: [
+          {
+            photo: img3,
+            likes: 100,
+            comments: 100,
+            hot: 100,
+            text: "senhor deus seno senhor",
+          },
+        ],
+      },
+      {
+        id: 7,
+        name: "Jhon Smith",
+        username: 'random',
+        followers: 1000,
+        following: 100,
+        avatar: img4,
+        banner,
+        funded: 10,
+        description: 'OPE',
+        post: [
+          {
+            photo: img4,
+            likes: 100,
+            comments: 100,
+            hot: 100,
+            text: "senhor deus seno senhor",
+          },
+        ],
+      },
+      {
+        id: 8,
+        name: "Pablo",
+        username: 'random',
+        followers: 1000,
+        following: 100,
+        avatar: img5,
+        banner,
+        funded: 10,
+        description: 'OPE',
+        post: [
+          {
+            photo: img5,
+            likes: 100,
+            comments: 100,
+            hot: 100,
+            text: "senhor deus seno senhor",
+          },
+        ],
+      },
 ]
 
 export const images = [
