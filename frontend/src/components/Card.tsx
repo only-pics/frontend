@@ -7,9 +7,13 @@ import DownloadIcon from "@mui/icons-material/Download";
 import { useNavigate } from "react-router-dom";
 import { Clock, CircleDollarSign } from 'lucide-react';
 
+import BidBtn from "./BidBtn";
+
 export function Card({
   userId,
   userName,
+  userImg,
+  userBio,
   wallet,
   postId,
   postImg,
@@ -20,6 +24,8 @@ export function Card({
 }: {
   userId: string;
   userName: string;
+  userImg: string;
+  userBio: string;
   wallet: string;
   postId: string;
   postImg: string;
@@ -35,7 +41,7 @@ export function Card({
       <div className="border rounded-lg p-4 flex flex-col">
         <div className="flex flex-row justify-between items-center">
           <div onClick={() => history(`/profile/${userId}`)} className="mb-2">
-            <AvatarPost avatar={postImg} username={userName} />
+            <AvatarPost avatar={userImg} username={userName} />
           </div>
         </div>
         <p className="ml-3 mb-3 font-bold text-foreground">- {description}</p>
@@ -62,10 +68,11 @@ export function Card({
                 <p>{likes.length}</p>
               </div>
             </div>
-            <div className="bg-gradient-to-r from-[#5706f3] to-[#8905ff] rounded-lg px-2 py-1 flex items-center mr-1 lg:mr-5 gap-2 brightness-95 hover:brightness-110 transition">
+            {/* <div className="bg-gradient-to-r from-[#5706f3] to-[#8905ff] rounded-lg px-2 py-1 flex items-center mr-1 lg:mr-5 gap-2 brightness-95 hover:brightness-110 transition">
               <CircleDollarSign />
               <p><span className="hidden lg:inline">Current bid:</span> 100</p>
-            </div>
+            </div> */}
+            <BidBtn userId={"user ID here"} bidAmount={777} postId={postId} wallet={"userWalletHere"} />
           </div>
         </div>
       </div>

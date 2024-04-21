@@ -55,6 +55,8 @@ export default function Feed() {
                 key={index}
                 userId={post.userId}
                 userName={post.userName}
+                userImg={post.userImg}
+                userBio={post.userBio}
                 wallet={post.wallet}
                 postId={post.postId}
                 postImg={post.postImg}

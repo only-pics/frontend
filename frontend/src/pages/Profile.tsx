@@ -2,7 +2,7 @@ import { Avatar } from '@/components/Avatar';
 import { images, users } from '../utils/mockPintado';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { CircleDollarSign, Wallet } from 'lucide-react';
+import { CircleDollarSign, Wallet, Heart } from 'lucide-react';
 import ProfileHeader from '@/components/ProfileHeader';
 import { set } from 'firebase/database';
 
@@ -34,8 +34,8 @@ export default function Profile() {
                         userFollowers: data[0].followers || 27,
                         userFollowing: data[0].following || 27,
                         postsFunded: Object.keys(data).length, // number of posts funded
-                        userImg: data[0].postImg, // might add userImg in the future
-                        userBio: data[0].description, // random description
+                        userImg: data[0].userImg, // might add userImg in the future
+                        userBio: data[0].userBio, // random description
                         // add other stuff here
                     });
                     console.log(data);
@@ -115,7 +115,8 @@ export default function Profile() {
                                     <div className='group relative'>
                                         <img src={post.postImg} alt="" className='w-full aspect-[1/1.6] object-cover group-hover:brightness' />
                                         <div className='absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100'>
-                                            <p className='text-white'>View post</p>
+                                            <Heart color='hsl(var(--foreground))' />
+                                            <p className='text-white ml-1'>{post.likes.length}</p>
                                         </div>
                                     </div>
                                 )
