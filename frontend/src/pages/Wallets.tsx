@@ -2,7 +2,7 @@ import Network from "@/components/Network";
 import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import Looks3Icon from "@mui/icons-material/Looks3";
-import { networkImages } from "@/utils/mock";
+import { networkImages } from "@/utils/mockDB";
 import { useState } from "react";
 
 export default function Wallets() {
