@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { DropzoneState, useDropzone } from "react-dropzone";
 import { Upload, X } from 'lucide-react';
 import { Card } from "./Card";
+import Preview from "./Preview";
+import { users } from "@/utils/mockPintado";
 
 interface InputProps {
     dropzone: DropzoneState
@@ -84,13 +86,21 @@ const HasFile = ({ file, removeFile }: HasFileProps) => {
     return(
         <div className="w-full px-6 py-8 lg:mt-12">
             <div className="flex flex-col items-center">
-                <p className="text-lg">Post preview</p>
-                <textarea 
+                <p className="text-lg font-bold">Post preview</p>
+                <div className="lg:w-[60vw]">
+                    <Preview  
+                        image={file} 
+                        avatar={users[0].avatar} 
+                        username={users[0].username} 
+                        text={description}                 
+                    />
+                </div>
+                <textarea
+                    className="bg-background resize-none w-[60vw] h-[20vh] px-4 py-2 mt-4 outline-0 border-2 border-secondary" 
                     placeholder="Write a post description" 
                     value={description} 
                     onChange={handleChange} 
-                    className="bg-background resize-none w-[70vw] h-[20vh] px-4 py-2 mt-12 outline-0 border-2 border-secondary lg:w-1/3 " 
-                    name="" 
+                    name=""
                     id="post-description"
                     rows={6}
                     ref={textAreaRef}
