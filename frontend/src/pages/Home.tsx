@@ -1,11 +1,13 @@
+import LoggedIn from "@/components/LoggedIn";
+import SignUp from "@/components/SignUp";
 
-export default function Home() {
+export default function Home({ connectWallet, account, signer }: 
+    { connectWallet: any; account: string | null; signer: any;}) {
 
-    return (
-        <div className='w-[100vw] mt-20 p-20'>
-            <div className="w-48 h-48 bg-primary border-2 border-red-600">
-                HOME
-            </div>
-        </div>
-    );
+    if(signer) {
+       return <LoggedIn />
+    } else {
+        return <SignUp connectWallet={connectWallet} account={account} signer={signer} />
+    }
+    
 };

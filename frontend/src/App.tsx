@@ -43,7 +43,7 @@ function App() {
               />
             }
           >
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home connectWallet={connectWallet} account={account} signer={signer}/>} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route 
               path="/feed" 
