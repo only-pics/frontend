@@ -11,7 +11,7 @@ import Wallets from "./pages/Wallets";
 
 function App() {
   const [account, setAccount] = React.useState<string | null>(null);
-  // const [provider, setProvider] = React.useState<any>(null);
+  const [provider, setProvider] = React.useState<any>(null);
   const [signer, setSigner] = React.useState<any>(null);
 
   React.useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
   async function connectWallet(): Promise<void> {
     const connection = await connectMetamask();
     setAccount(connection?.address);
-    // setProvider(connection?.web3Provider);
+    setProvider(connection?.web3Provider);
     setSigner(connection?.web3Signer);
   }
 
@@ -45,7 +45,16 @@ function App() {
           >
             <Route path="/" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
-            <Route path="/feed" element={<Feed />} />
+            <Route 
+              path="/feed" 
+              element={
+                <Feed 
+                  provider={provider}
+                  account={account}
+                  signer={signer}
+                />
+              } 
+            />
             <Route path="/new" element={<New />} />
             <Route
               path="/wallets"

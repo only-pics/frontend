@@ -5,7 +5,7 @@ import { Card } from "@/components/Card";
 // import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export default function Feed() {
+export default function Feed({ provider, account, signer } : { provider: any; account: string | null; signer: any}) {
 
   const [postsData, setPostsData] = useState([]);
 
@@ -52,6 +52,9 @@ export default function Feed() {
           return (
             <div className="w-full">
               <Card
+                provider={provider}
+                account={account}
+                signer={signer}
                 key={index}
                 userId={post.userId}
                 userName={post.userName}

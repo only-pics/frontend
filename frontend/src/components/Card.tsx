@@ -6,10 +6,16 @@ import SendIcon from "@mui/icons-material/Send";
 import DownloadIcon from "@mui/icons-material/Download";
 import { useNavigate } from "react-router-dom";
 import { Clock, CircleDollarSign } from 'lucide-react';
-
+import { HeartBit, SupportedChain } from "@fileverse/heartbit-react";
+import { SiweMessage } from 'siwe'
 import BidBtn from "./BidBtn";
+import { keccak256, toUtf8Bytes } from "ethers/lib/utils";
+import { useToast } from "@/components/ui/use-toast"
 
 export function Card({
+  provider,
+  account,
+  signer,
   userId,
   userName,
   userImg,
@@ -22,6 +28,9 @@ export function Card({
   funded,
   bettors,
 }: {
+  provider: any;
+  account: string | null;
+  signer: any;
   userId: string;
   userName: string;
   userImg: string;
@@ -34,7 +43,47 @@ export function Card({
   funded: number;
   bettors: object[];
 }) {
+
   const history = useNavigate();
+
+  const { toast } = useToast()
+
+  const coreOptions = {
+    chain: "0xaa36a7" as SupportedChain
+  }
+
+  const getSignatureArgsHook = async () => {
+    if (!provider) {
+      toast({
+        title: "Connect Wallet",
+        description: "Please connect your wallet to like this post!",
+      })
+    }
+
+    const signer = await provider.getSigner()
+    const address = await signer.getAddress();
+
+    const siweMessage = new SiweMessage({
+      domain: window.location.host,
+      address,
+      statement: "Hello World!",
+      uri: window.location.origin,
+      version: "1",
+    });
+
+    const message = siweMessage.prepareMessage();
+    const signature = await signer.signMessage(message);
+
+    return {
+      message,
+      signature,
+      onMintCallback: () => {
+        console.log("Minted!")
+      }
+    };
+  };
+
+  const hash = keccak256(toUtf8Bytes("window.location.href"));
 
   return (
     <div className="w-full h-full rounded-3xl items-start justify-center p-4">
@@ -45,7 +94,7 @@ export function Card({
           </div>
         </div>
         <p className="ml-3 mb-3 font-bold text-foreground">- {description}</p>
-        <div className="relative bg-primary rounded-3xl cursor-pointer">
+        <div className="relative bg-primary rounded-3xl cursor-pointer overflow-hidden">
           <img
             src={postImg}
             alt=""
@@ -57,14 +106,18 @@ export function Card({
               <p><span className="hidden lg:inline">Time left:</span> 3min</p>
             </div>
           </div>
-          <div className="absolute bottom-0 left-0 w-full h-1/6 bg-black bg-opacity-50 rounded-b-3xl flex items-center justify-between">
+          <div className="absolute bottom-0 left-0 w-full h-1/6 bg-black bg-opacity-50 rounded-b-xl flex items-center justify-between">
             <div className="flex flex-row space-x-3 ml-3">
               <div className="flex items-center space-x-1 text-white">
                 <CommentIcon />
                 {/* <p className="font-">{post.comments}</p> */}
               </div>
               <div className="flex items-center space-x-1 text-white">
-                <FavoriteIcon />
+                <HeartBit
+                  coreOptions={coreOptions}
+                  getSignatureArgsHook={getSignatureArgsHook}
+                  hash={hash}
+                />
                 <p>{likes.length}</p>
               </div>
             </div>
