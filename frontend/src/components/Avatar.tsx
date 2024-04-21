@@ -1,4 +1,3 @@
-
 export function Avatar({avatar} : {avatar: any}) {
     return (    
         <div className="lg:w-[7rem] w-[5.5rem]">
@@ -6,3 +5,4 @@ export function Avatar({avatar} : {avatar: any}) {
         </div>
     )
 }
+

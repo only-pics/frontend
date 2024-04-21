@@ -7,9 +7,10 @@ import Profile from "./pages/Profile"
 import Feed from "./pages/Feed"
 import { connectMetamask } from "./utils/connectMetamask"
 import New from "./pages/New"
+import Wallets from "./pages/Wallets";
+
 
 function App() {
-
   const [account, setAccount] = React.useState<string | null>(null);
   // const [provider, setProvider] = React.useState<any>(null);
   const [signer, setSigner] = React.useState<any>(null);
@@ -33,22 +34,27 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={
-            <Layout
-              connectWallet={connectWallet}
-              account={account}
-              signer={signer}
-            />
-          }>
+          <Route
+            path="/"
+            element={
+              <Layout
+                connectWallet={connectWallet}
+                account={account}
+                signer={signer}
+              />
+            }
+          >
             <Route path="/" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/new" element={<New />} />
+            <Route path="/wallets" element={<Wallets />} />
+
           </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
