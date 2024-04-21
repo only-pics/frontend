@@ -3,17 +3,17 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 export function MyAvatarFeed({ avatar }: { avatar: any }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="w-[4.5rem] h-[4.5rem] relative border-gradient1 cursor-pointer">
+      <div className="w-[3.5rem] h-[3.5rem] lg:w-[4rem] lg:h-[4rem] relative cursor-pointer">
         <img
           src={avatar}
           alt=""
-          className="rounded-full w-full h-full object-cover"
+          className="rounded-full w-full h-full border-gradient1 border-4 object-cover"
         />
-        <div className="absolute -bottom-1 -right-4 cursor-pointer">
+        <div className="absolute -bottom-1 -right-1 cursor-pointer">
           <AddCircleIcon
             style={{
-              color: "#FF00FF",
-              fontSize: 32,
+              color: "hsl(var(--primary))",
+              fontSize: 20,
             }}
           />
         </div>

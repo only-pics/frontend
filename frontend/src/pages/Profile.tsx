@@ -43,7 +43,7 @@ export default function Profile() {
                 </div>
                 <div className='bg-background py-6 -mt-12 relative'>
                     <div className='flex flex-col items-center justify-center -mt-16 lg:-mt-20'>
-                        <Avatar avatar={user.avatar}/>
+                        <Avatar avatar={user.avatar} profile={true}/>
                         <p className='mt-5'><span className='font-bold'>{user.name}</span> | @{user.username}</p>
                         <p className='text-base text-secondary-foreground'>{user.description}</p>
                     </div>

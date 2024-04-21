@@ -69,8 +69,8 @@
 .border-gradient1 {
   background: linear-gradient(
       90deg,
-      rgba(248, 193, 247, 1) 0%,
-      rgba(255, 0, 255, 1) 100%
+      #5706f3,
+      #8905ff
     )
     border-box;
   border-radius: 50em;

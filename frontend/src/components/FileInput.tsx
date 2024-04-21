@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { DropzoneState, useDropzone } from "react-dropzone";
 import { Upload, X } from 'lucide-react';
+import { Card } from "./Card";
 
 interface InputProps {
     dropzone: DropzoneState
@@ -84,12 +85,6 @@ const HasFile = ({ file, removeFile }: HasFileProps) => {
         <div className="w-full px-6 py-8 lg:mt-12">
             <div className="flex flex-col items-center">
                 <p className="text-lg">Post preview</p>
-                <div className="mt-6 relative w-[70vw] lg:w-1/3">
-                    <button onClick={removeFile} type="button" className="absolute right-0 pr-2 pt-2">
-                        <X size={"20"}/>
-                    </button>
-                    <img className="rounded-lg" src={file} alt="" />
-                </div>
                 <textarea 
                     placeholder="Write a post description" 
                     value={description} 
