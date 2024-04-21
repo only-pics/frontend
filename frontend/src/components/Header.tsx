@@ -25,11 +25,11 @@ export function Header({ connectWallet, account, signer }:
                 </div>
 
                 <div className="flex flex-row justify-evenly w-full px-4 lg:hidden">
-                    <Button variant="ghost" className="h-[100%] w-24 relative glow-bottom-border hover:bg-transparent group" onClick={() => navigator('/')}><p className="group-hover:text-primary group-hover:text-shadow-primary-glow"><Home/></p></Button>
+                    <Button variant="ghost" className="h-[100%] w-24 relative glow-bottom-border hover:bg-transparent group" onClick={() => navigator('/feed')}><p className="group-hover:text-primary group-hover:text-shadow-primary-glow"><Home/></p></Button>
                     <NavButton to="/feed"><Search size={24}/></NavButton>
-                    <Button variant="ghost" className="h-[100%] w-24 relative glow-bottom-border hover:bg-transparent group" onClick={() => navigator('/')}><p className="group-hover:text-primary group-hover:text-shadow-primary-glow"><PlusCircleIcon/></p></Button>
-                    <NavButton to="/wallet"><WalletCards size={24}/></NavButton>
-                    <NavButton to="/profile"><CircleUser size={24}/></NavButton>
+                    <Button variant="ghost" className="h-[100%] w-24 relative glow-bottom-border hover:bg-transparent group" onClick={() => navigator('/new')}><p className="group-hover:text-primary group-hover:text-shadow-primary-glow"><PlusCircleIcon/></p></Button>
+                    <NavButton to="/wallets"><WalletCards size={24}/></NavButton>
+                    <NavButton to="/profile/1"><CircleUser size={24}/></NavButton>
                 </div>
 
 

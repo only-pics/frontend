@@ -22,7 +22,7 @@ export default function Wallets() {
         <form className="flex flex-wrap space-x-2">
           {networkImages.map((networkImage, index) => {
             return (
-              <div>
+              <div key={index}>
                 <input
                   type="radio"
                   id={"network" + index}
