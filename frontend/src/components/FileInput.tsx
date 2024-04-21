@@ -71,13 +71,13 @@ const HasFile = ({ file, removeFile }: HasFileProps) => {
     const [description, setDescription] = useState<string>("");
     const textAreaRef = useRef(null);
 
-    const handleChange = (event) => {
+    const handleChange = (event : any) => {
         setDescription(event.target.value)
     }
 
     useEffect(() => {
-        textAreaRef.current.style.height = "auto"
-        textAreaRef.current.style.height = textAreaRef.current.scrollHeight + "px"
+        (textAreaRef as any).current.style.height = "auto"; 
+        (textAreaRef as any).current.style.height = (textAreaRef as any).current.scrollHeight + "px";
     }, [description])
 
     return(

@@ -24,7 +24,7 @@ export default function Profile() {
     }, [])
 
     useEffect(() => {
-        const scroll = (event) => {
+        const scroll = (event: any) => {
             console.log('scrollY', scrollY)
         };
 

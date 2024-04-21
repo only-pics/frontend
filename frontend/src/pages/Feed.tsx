@@ -24,7 +24,7 @@ export default function Feed() {
 
   return (
     <div className="flex flex-col lg:my-16 mb-16 w-[100vw] items-center justify-center outline-none">
-      <div className="flex items-center w-[50%] min-w-96 h-full bg-background overflow-x-auto scale-up-center">
+      <div className="flex items-center w-full h-full bg-background overflow-x-auto scale-up-center">
         <div className="mx-3 my-3">
           <MyAvatarFeed avatar={eu.avatar} />
         </div>
