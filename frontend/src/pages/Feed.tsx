@@ -4,7 +4,6 @@ import { MyAvatarFeed } from "@/components/MyAvatarFeed";
 import { Card } from "@/components/Card";
 // import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { set } from "firebase/database";
 
 export default function Feed() {
 
@@ -32,8 +31,8 @@ export default function Feed() {
   }, []);
 
   return (
-    <div className="flex flex-col lg:my-16 mb-16 w-[100vw] items-center justify-center outline-none">
-      <div className="flex items-center w-[50%] min-w-96 h-full bg-background overflow-x-auto scale-up-center">
+    <div className="flex flex-col lg:my-16 mb-16 w-[100vw] items-center outline-none">
+      <div className="flex items-center w-full h-full bg-background justify-start overflow-x-auto lg:w-[60vw]">
         <div className="mx-3 my-3">
           <MyAvatarFeed avatar={eu.avatar} />
         </div>
@@ -48,10 +47,10 @@ export default function Feed() {
           );
         })}
       </div>
-      <div className="flex flex-col items-center min-w-96 w-[50%] bg-background">
+      <div className="flex flex-col w-full items-center bg-background lg:w-[60vw]">
         {postsData.map((post: any, index: number) => {
           return (
-            <div className="mx-3 my-3 ">
+            <div className="w-full">
               <Card
                 key={index}
                 userId={post.userId}

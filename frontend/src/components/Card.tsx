@@ -37,17 +37,13 @@ export function Card({
           <div onClick={() => history(`/profile/${userId}`)} className="mb-2">
             <AvatarPost avatar={postImg} username={userName} />
           </div>
-          <button className="flex flex-row bg-black bg-opacity-50 text-white font-bold py-2 px-4 rounded-lg">
-            <WhatshotIcon />
-            {/* <p>{post.hot}</p> */}
-          </button>
         </div>
         <p className="ml-3 mb-3 font-bold text-foreground">- {description}</p>
         <div className="relative bg-primary rounded-3xl cursor-pointer">
           <img
             src={postImg}
             alt=""
-            className="w-full rounded-xl object-contain"
+            className="rounded-xl w-full aspect-square"
           />
           <div className="absolute top-1 right-1 lg:top-5 lg:right-5 text-white">
             <div className="bg-secondary px-2 py-2 rounded-lg flex items-center text-sm gap-2">
