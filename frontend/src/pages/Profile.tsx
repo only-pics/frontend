@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CircleDollarSign, Wallet, Heart } from 'lucide-react';
 import ProfileHeader from '@/components/ProfileHeader';
-import { set } from 'firebase/database';
+// import { set } from 'firebase/database';
 
 export default function Profile() {
     const params = useParams();
