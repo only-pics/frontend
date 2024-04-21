@@ -4,8 +4,17 @@ import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import Looks3Icon from "@mui/icons-material/Looks3";
 import { networkImages } from "@/utils/mockDB";
 import { useState } from "react";
+import { Check } from "lucide-react";
 
-export default function Wallets() {
+export default function Wallets({
+  connectWallet,
+  account,
+  signer,
+}: {
+  connectWallet: any;
+  account: string | null;
+  signer: any;
+}) {
   const [network, setNetwork] = useState<string>("network0");
   function handleNetworkChange(event: any) {
     setNetwork(event.target.value);
@@ -49,8 +58,17 @@ export default function Wallets() {
           Link Your Wallet
         </h1>
       </div>
-      <button className="mt-3 bg-foreground text-background font-bold px-3 py-1 rounded-full">
-        Connect Wallet
+      <button
+        onClick={connectWallet}
+        className="mt-3 flex flex-row bg-gradient-to-r from-[#5706f3] to-[#8905ff] text-white font-bold px-3 py-1 rounded-full"
+      >
+        {signer ? <Check className="mr-1" /> : ""}
+        {signer
+          ? "Connected: " +
+            account?.substring(0, 5) +
+            "..." +
+            account?.substring(38, 42)
+          : "Connect Wallet"}
       </button>
       <div className="mt-6 flex flex-row justify-start text-foreground">
         <Looks3Icon />
@@ -58,7 +76,7 @@ export default function Wallets() {
           Verify Ownership
         </h1>
       </div>
-      <button className="mt-3 bg-foreground text-background font-bold px-3 py-1 rounded-full">
+      <button className="mt-3 bg-gradient-to-r from-[#5706f3] to-[#8905ff] text-white font-bold px-3 py-1 rounded-full">
         Sign Message
       </button>
     </div>

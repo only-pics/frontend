@@ -6,11 +6,11 @@ export default function Network({
   selected: boolean;
 }) {
   return (
-    <div className="hover:bg-black hover:bg-opacity-30 rounded-lg cursor-pointer">
+    <div className="cursor-pointer">
       <img
         src={networkImage}
-        className={`w-[7rem] h-[7rem] p-1 rounded-lg object-cover border-2 border-foreground ${
-          selected ? "bg-black bg-opacity-30" : ""
+        className={`w-[7rem] h-[7rem] rounded-full object-cover ${
+          selected ? "border-2 border-gradient1" : "border-2 border-foreground"
         }`}
       />
     </div>
