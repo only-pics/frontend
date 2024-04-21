@@ -1,12 +1,14 @@
-import React from "react";
-import { ThemeProvider } from "@/components/theme-provider";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./pages/Layout";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import Feed from "./pages/Feed";
+import React from "react"
+import { ThemeProvider } from "@/components/theme-provider"
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Layout from "./pages/Layout"
+import Home from "./pages/Home"
+import Profile from "./pages/Profile"
+import Feed from "./pages/Feed"
+import { connectMetamask } from "./utils/connectMetamask"
+import New from "./pages/New"
 import Wallets from "./pages/Wallets";
-import { connectMetamask } from "./utils/connectMetamask";
+
 
 function App() {
   const [account, setAccount] = React.useState<string | null>(null);
@@ -45,7 +47,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/profile/:id" element={<Profile />} />
             <Route path="/feed" element={<Feed />} />
+            <Route path="/new" element={<New />} />
             <Route path="/wallets" element={<Wallets />} />
+
           </Route>
         </Routes>
       </BrowserRouter>
