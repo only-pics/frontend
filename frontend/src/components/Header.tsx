@@ -50,7 +50,7 @@ export function Header({ connectWallet, account, signer }:
                     <div className="flex flex-col items-center justify-center h-[100%] hidden lg:flex">
                         <ModeToggle/>
                     </div> 
-                    <div className="flex flex-row space-x-2 hidden lg:flex">
+                    {/* <div className="flex flex-row space-x-2 hidden lg:flex">
                         {networkImages.map((networkImage, index) => {
                             return (
                             <div key={index}>
@@ -73,18 +73,9 @@ export function Header({ connectWallet, account, signer }:
                             </div>
                             );
                         })}
-                    </div>
-                    {network === "network0" &&
-                        <div className="relative px-4 py-2 my-2 text-foreground rounded-lg shadow focus:outline-none truncate hidden lg:inline-block cursor-pointer" onClick={connectWallet}>
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#5706f3] to-[#8905ff] rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-700 flex flex-col items-center justify-center">
-                                {signer 
-                                ? "Connected: " +
-                                account?.substring(0, 5) +
-                                "..." +
-                                account?.substring(38, 42) 
-                                : "Connect Wallet"
-                                }
-                            </div>
+                    </div> */}
+                    <div className="relative px-4 py-2 my-2 text-foreground rounded-lg shadow focus:outline-none truncate hidden lg:inline-block cursor-pointer" onClick={connectWallet}>
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#5706f3] to-[#8905ff] rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-700 flex flex-col items-center justify-center">
                             {signer 
                             ? "Connected: " +
                             account?.substring(0, 5) +
@@ -93,12 +84,19 @@ export function Header({ connectWallet, account, signer }:
                             : "Connect Wallet"
                             }
                         </div>
-                    }
-                    {network === "network1" &&
+                        {signer 
+                        ? "Connected: " +
+                        account?.substring(0, 5) +
+                        "..." +
+                        account?.substring(38, 42) 
+                        : "Connect Wallet"
+                        }
+                    </div>
+                    {/* {network === "network1" &&
                         <div className="hidden lg:inline-block">
                             <WalletMultiButton />
                         </div>
-                    }
+                    } */}
                 </div>           
             </div>
         </div>

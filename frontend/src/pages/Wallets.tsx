@@ -61,23 +61,18 @@ export default function Wallets({
           Link Your Wallet
         </h1>
       </div>
-      {networkMobile === "network0" &&
-        <button
-          onClick={connectWallet}
-          className="mt-3 flex flex-row bg-gradient-to-r from-[#5706f3] to-[#8905ff] text-white font-bold px-3 py-1 rounded-full"
-        >
-          {signer ? <Check className="mr-1" /> : ""}
-          {signer
-            ? "Connected: " +
-              account?.substring(0, 5) +
-              "..." +
-              account?.substring(38, 42)
-            : "Connect Wallet"}
-        </button>
-      }
-      {networkMobile === "network1" &&
-        <WalletMultiButton />
-      }
+      <button
+        onClick={connectWallet}
+        className="mt-3 flex flex-row bg-gradient-to-r from-[#5706f3] to-[#8905ff] text-white font-bold px-3 py-1 rounded-full"
+      >
+        {signer ? <Check className="mr-1" /> : ""}
+        {signer
+          ? "Connected: " +
+            account?.substring(0, 5) +
+            "..." +
+            account?.substring(38, 42)
+          : "Connect Wallet"}
+      </button>
       <div className="mt-6 flex flex-row justify-start text-foreground">
         <Looks3Icon />
         <h1 className="ml-1 text-foreground text-base font-bold">
