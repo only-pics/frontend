@@ -3,28 +3,37 @@ import { AvatarFeed } from "@/components/AvatarFeed";
 import { MyAvatarFeed } from "@/components/MyAvatarFeed";
 import { Card } from "@/components/Card";
 // import { useParams } from "react-router-dom";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { set } from "firebase/database";
 
 export default function Feed() {
-  // const params = useParams();
-  // const id = params.id || "";
-  // const [user, setUser] = useState<any>({});
 
-  // const getUser = async () => {
-  //   try {
-  //     setUser(users[Number(id) - 1]);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const [postsData, setPostsData] = useState([]);
 
-  // useEffect(() => {
-  //   fetchUser();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://backend-only-pics.vercel.app/api");
+        console.log(response);
+        if (response.ok) {
+          const data = await response.json();
+          setPostsData(data);
+          console.log(data);
+        } else {
+          console.error("Something went wrong");
+          // throw new Error("Something went wrong");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <div className="flex flex-col lg:my-16 mb-16 w-[100vw] items-center outline-none">
-      <div className="flex items-center w-full h-full bg-background justify-start overflow-x-auto lg:w-[60vw]">
+    <div className="flex flex-col lg:my-16 mb-16 w-[100vw] items-center justify-center outline-none">
+      <div className="flex items-center w-[50%] min-w-96 h-full bg-background overflow-x-auto scale-up-center">
         <div className="mx-3 my-3">
           <MyAvatarFeed avatar={eu.avatar} />
         </div>
@@ -39,16 +48,21 @@ export default function Feed() {
           );
         })}
       </div>
-      <div className="flex flex-col items-center bg-background lg:w-[60vw]">
-        {users.map((user) => {
+      <div className="flex flex-col items-center min-w-96 w-[50%] bg-background">
+        {postsData.map((post: any, index: number) => {
           return (
-            <div className="">
+            <div className="mx-3 my-3 ">
               <Card
-                id={user.id}
-                post={user.post[0]}
-                username={user.name}
-                avatar={user.avatar}
-                text={user.post[0].text}
+                key={index}
+                userId={post.userId}
+                userName={post.userName}
+                wallet={post.wallet}
+                postId={post.postId}
+                postImg={post.postImg}
+                description={post.description}
+                likes={post.likes}
+                funded={post.funded}
+                bettors={post.bettors}
               />
             </div>
           );
