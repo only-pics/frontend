@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { ThemeProvider } from "@/components/theme-provider";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout";
@@ -8,8 +8,26 @@ import Feed from "./pages/Feed";
 import { connectMetamask } from "./utils/connectMetamask";
 import New from "./pages/New";
 import Wallets from "./pages/Wallets";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import {
+  WalletModalProvider
+} from "@solana/wallet-adapter-react-ui";
+import * as web3 from "@solana/web3.js";
 
 function App() {
+
+  const endpoint = web3.clusterApiUrl("devnet");
+  const wallets = useMemo(() => [], []);
+
+  const config = {
+    rpcUrl: 'https://ethereum-sepolia-rpc.publicnode.com',
+    domain: 'https://onlypictures.netlify.app/',
+    siweUri: 'https://example.com/login',
+  };
+
   const [account, setAccount] = React.useState<string | null>(null);
   const [provider, setProvider] = React.useState<any>(null);
   const [signer, setSigner] = React.useState<any>(null);
@@ -31,44 +49,50 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout
-                connectWallet={connectWallet}
-                account={account}
-                signer={signer}
-              />
-            }
-          >
-            <Route path="/" element={<Home />} />
-            <Route path="/profile/:id" element={<Profile />} />
-            <Route 
-              path="/feed" 
-              element={
-                <Feed 
-                  provider={provider}
-                  account={account}
-                  signer={signer}
-                />
-              } 
-            />
-            <Route path="/new" element={<New />} />
-            <Route
-              path="/wallets"
-              element={
-                <Wallets
-                  connectWallet={connectWallet}
-                  account={account}
-                  signer={signer}
-                />
-              }
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <ConnectionProvider endpoint={endpoint}>
+        <WalletProvider wallets={wallets}>
+          <WalletModalProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Layout
+                      connectWallet={connectWallet}
+                      account={account}
+                      signer={signer}
+                    />
+                  }
+                >
+                  <Route path="/" element={<Home />} />
+                  <Route path="/profile/:id" element={<Profile />} />
+                  <Route 
+                    path="/feed" 
+                    element={
+                      <Feed 
+                        provider={provider}
+                        account={account}
+                        signer={signer}
+                      />
+                    } 
+                  />
+                  <Route path="/new" element={<New />} />
+                  <Route
+                    path="/wallets"
+                    element={
+                      <Wallets
+                        connectWallet={connectWallet}
+                        account={account}
+                        signer={signer}
+                      />
+                    }
+                  />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </WalletModalProvider>
+        </WalletProvider>
+      </ConnectionProvider>
     </ThemeProvider>
   );
 }

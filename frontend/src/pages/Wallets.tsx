@@ -1,10 +1,12 @@
-import Network from "@/components/Network";
+// import Network from "@/components/Network";
 import LooksOneIcon from "@mui/icons-material/LooksOne";
 import LooksTwoIcon from "@mui/icons-material/LooksTwo";
 import Looks3Icon from "@mui/icons-material/Looks3";
 import { networkImages } from "@/utils/mockDB";
 import { useState } from "react";
 import { Check } from "lucide-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import NetworkMobile from "@/components/NetworkMobile";
 
 export default function Wallets({
   connectWallet,
@@ -15,9 +17,9 @@ export default function Wallets({
   account: string | null;
   signer: any;
 }) {
-  const [network, setNetwork] = useState<string>("network0");
-  function handleNetworkChange(event: any) {
-    setNetwork(event.target.value);
+  const [networkMobile, setNetworkMobile] = useState<string>("network0");
+  function handleNetworkMobileChange(event: any) {
+    setNetworkMobile(event.target.value);
   }
   return (
     <div className="flex flex-col lg:my-16 mb-16 w-[100vw] bg-background items-center justify-center outline-none">
@@ -38,13 +40,14 @@ export default function Wallets({
                   name="qualquerUm"
                   className="hidden"
                   value={"network" + index}
-                  checked={network == "network" + index}
-                  onChange={handleNetworkChange}
+                  checked={networkMobile == "network" + index}
+                  onChange={handleNetworkMobileChange}
                 ></input>
                 <label htmlFor={"network" + index}>
-                  <Network
+                  <NetworkMobile
+                    device="mobile"
                     networkImage={networkImage}
-                    selected={network == "network" + index ? true : false}
+                    selected={networkMobile == "network" + index ? true : false}
                   />
                 </label>
               </div>
@@ -58,18 +61,23 @@ export default function Wallets({
           Link Your Wallet
         </h1>
       </div>
-      <button
-        onClick={connectWallet}
-        className="mt-3 flex flex-row bg-gradient-to-r from-[#5706f3] to-[#8905ff] text-white font-bold px-3 py-1 rounded-full"
-      >
-        {signer ? <Check className="mr-1" /> : ""}
-        {signer
-          ? "Connected: " +
-            account?.substring(0, 5) +
-            "..." +
-            account?.substring(38, 42)
-          : "Connect Wallet"}
-      </button>
+      {networkMobile === "network0" &&
+        <button
+          onClick={connectWallet}
+          className="mt-3 flex flex-row bg-gradient-to-r from-[#5706f3] to-[#8905ff] text-white font-bold px-3 py-1 rounded-full"
+        >
+          {signer ? <Check className="mr-1" /> : ""}
+          {signer
+            ? "Connected: " +
+              account?.substring(0, 5) +
+              "..." +
+              account?.substring(38, 42)
+            : "Connect Wallet"}
+        </button>
+      }
+      {networkMobile === "network1" &&
+        <WalletMultiButton />
+      }
       <div className="mt-6 flex flex-row justify-start text-foreground">
         <Looks3Icon />
         <h1 className="ml-1 text-foreground text-base font-bold">

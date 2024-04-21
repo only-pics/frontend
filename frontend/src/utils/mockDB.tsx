@@ -17,7 +17,7 @@ export const eu = {
   post: [{ photo: avatar, likes: 100, comments: 100, hot: 100 }],
 };
 
-export const networkImages = [ethereum, solana, polygon];
+export const networkImages = [ethereum, solana];
 
 export const users = [
   {

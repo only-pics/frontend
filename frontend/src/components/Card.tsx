@@ -6,11 +6,13 @@ import SendIcon from "@mui/icons-material/Send";
 import DownloadIcon from "@mui/icons-material/Download";
 import { useNavigate } from "react-router-dom";
 import { Clock, CircleDollarSign } from 'lucide-react';
-import { HeartBit, SupportedChain } from "@fileverse/heartbit-react";
-import { SiweMessage } from 'siwe'
+import { HeartBit, HeartBitProvider, SupportedChain, useHeartBit } from "@fileverse/heartbit-react";
+// import { SiweMessage } from 'siwe'
 import BidBtn from "./BidBtn";
-import { keccak256, toUtf8Bytes } from "ethers/lib/utils";
-import { useToast } from "@/components/ui/use-toast"
+// import { keccak256, toUtf8Bytes } from "ethers/lib/utils";
+// import { useToast } from "@/components/ui/use-toast"
+// import { useEffect, useState } from "react";
+import { CustomHeartBit } from "./CustomHeartBit";
 
 export function Card({
   provider,
@@ -46,44 +48,44 @@ export function Card({
 
   const history = useNavigate();
 
-  const { toast } = useToast()
+  // const { toast } = useToast()
 
   const coreOptions = {
     chain: "0xaa36a7" as SupportedChain
   }
 
-  const getSignatureArgsHook = async () => {
-    if (!provider) {
-      toast({
-        title: "Connect Wallet",
-        description: "Please connect your wallet to like this post!",
-      })
-    }
+  // const getSignatureArgsHook = async () => {
+  //   if (!provider) {
+  //     toast({
+  //       title: "Connect Wallet",
+  //       description: "Please connect your wallet to like this post!",
+  //     })
+  //   }
 
-    const signer = await provider.getSigner()
-    const address = await signer.getAddress();
+  //   const signer = await provider.getSigner()
+  //   const address = await signer.getAddress();
 
-    const siweMessage = new SiweMessage({
-      domain: window.location.host,
-      address,
-      statement: "Hello World!",
-      uri: window.location.origin,
-      version: "1",
-    });
+  //   const siweMessage = new SiweMessage({
+  //     domain: window.location.host,
+  //     address,
+  //     statement: "Hello World!",
+  //     uri: window.location.origin,
+  //     version: "1",
+  //   });
 
-    const message = siweMessage.prepareMessage();
-    const signature = await signer.signMessage(message);
+  //   const message = siweMessage.prepareMessage();
+  //   const signature = await signer.signMessage(message);
 
-    return {
-      message,
-      signature,
-      onMintCallback: () => {
-        console.log("Minted!")
-      }
-    };
-  };
+  //   return {
+  //     message,
+  //     signature,
+  //     onMintCallback: () => {
+  //       console.log("Minted!")
+  //     }
+  //   };
+  // };
 
-  const hash = keccak256(toUtf8Bytes("window.location.href"));
+  // const hash = keccak256(toUtf8Bytes("window.location.href"));
 
   return (
     <div className="w-full h-full rounded-3xl items-start justify-center p-4">
@@ -107,17 +109,24 @@ export function Card({
             </div>
           </div>
           <div className="absolute bottom-0 left-0 w-full h-1/6 bg-black bg-opacity-50 rounded-b-xl flex items-center justify-between">
-            <div className="flex flex-row space-x-3 ml-3">
+            <div className="flex flex-row h-full space-x-3 ml-3">
               <div className="flex items-center space-x-1 text-white">
                 <CommentIcon />
                 {/* <p className="font-">{post.comments}</p> */}
               </div>
               <div className="flex items-center space-x-1 text-white">
-                <HeartBit
+                <HeartBitProvider coreOptions={coreOptions}>
+                  <CustomHeartBit
+                    provider={provider}
+                    account={account}
+                    signer={signer}
+                  />
+                </HeartBitProvider>
+                {/* <HeartBit
                   coreOptions={coreOptions}
                   getSignatureArgsHook={getSignatureArgsHook}
                   hash={hash}
-                />
+                /> */}
                 <p>{likes.length}</p>
               </div>
             </div>
